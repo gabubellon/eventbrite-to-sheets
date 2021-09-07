@@ -1,0 +1,5 @@
+EVENTBRITE_TOKEN=<>
+EVENTBRITE_EVENT_ID=<>
+GOOGLE_SERVICE_ACCOUNT='<>'
+SAMPLE_SPREADSHEET_ID='<>'
+EVENTBRITE_ATTENDES_URL='https://www.eventbriteapi.com/v3/events/{EVENT}/attendees/?token={TOKEN}'
