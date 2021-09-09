@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os.path
+import socket
 
 from google.auth.transport.requests import Request
 from google.oauth2 import service_account
@@ -15,19 +16,20 @@ SERVICE_ACCOUNT_FILE = "key.json"
 
 
 def write_on_sheets(list_to_write):
+    socket.setdefaulttimeout(600)  # set timeout to 10 minutes
     credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES
     )
 
     service = build("sheets", "v4", credentials=credentials)
 
-    sheet = service.spreadsheets()
-    result = (
-        sheet.values()
-        .get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="attendes!A2:ZZ10000")
-        .execute()
-    )
-    values = result.get("values", [])
+    # sheet = service.spreadsheets()
+    # result = (
+    #     sheet.values()
+    #     .get(spreadsheetId=SAMPLE_SPREADSHEET_ID, range="attendes!A2:ZZ10000")
+    #     .execute()
+    # )
+    # values = result.get("values", [])
 
     service.spreadsheets().values().clear(
         spreadsheetId=SAMPLE_SPREADSHEET_ID, range="attendes!A2:Z", body={}
