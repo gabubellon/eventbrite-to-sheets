@@ -12,6 +12,7 @@ def main():
                 items.get("order_id"),
                 items.get("profile").get("name"),
                 items.get("profile").get("email"),
+                items.get("ticket_class_name")
             ]
         )
     google_sheets.write_on_sheets(attendes_array)
