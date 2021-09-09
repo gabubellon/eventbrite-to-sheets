@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import logging
 import os.path
 import socket
 
@@ -17,6 +18,8 @@ SERVICE_ACCOUNT_FILE = "key.json"
 
 def write_on_sheets(list_to_write):
     socket.setdefaulttimeout(600)  # set timeout to 10 minutes
+
+    logging.info(f"Creating Google Connection...")
     credentials = service_account.Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE, scopes=SCOPES
     )
@@ -31,13 +34,17 @@ def write_on_sheets(list_to_write):
     # )
     # values = result.get("values", [])
 
+    logging.info(f"Cleanning Sheets..")
     service.spreadsheets().values().clear(
         spreadsheetId=SAMPLE_SPREADSHEET_ID, range="attendes!A2:Z", body={}
     ).execute()
 
+    logging.info(f"Update Sheets..")
     service.spreadsheets().values().update(
         spreadsheetId=SAMPLE_SPREADSHEET_ID,
         valueInputOption="RAW",
         range="attendes!A2:Z",
         body=dict(majorDimension="ROWS", values=list_to_write),
     ).execute()
+
+    logging.info(f"Sheets Updated...")
