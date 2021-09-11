@@ -1,12 +1,15 @@
+from loguru import logger
+
 import eventbrite
 import google_sheets
 
 
 def main():
-    at = eventbrite.get_event_attendees()
+    logger.info("Starting get attends from event")
+    attends = eventbrite.get_event_attendees()
     attendes_array = []
 
-    for items in at[:100]:
+    for items in attends:
         attendes_array.append(
             [
                 items.get("order_id"),
@@ -16,7 +19,7 @@ def main():
             ]
         )
     google_sheets.write_on_sheets(attendes_array)
-
+    logger.info("Starting get attends frok event")
 
 if __name__ == "__main__":
     main()
