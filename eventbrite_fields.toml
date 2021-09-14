@@ -1,0 +1,7 @@
+attends=[
+        "order_id",
+        "profile:name",
+        "profile:email",
+        "ticket_class_name",
+        "costs:base_price:major_value"
+]

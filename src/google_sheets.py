@@ -4,8 +4,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from loguru import logger
 
-from settings import (GOOGLE_SERVICE_ACCOUNT, SHEET_HEADER, SHEET_ID,
-                      SHEET_RANGE)
+from settings import GOOGLE_SERVICE_ACCOUNT, SHEET_HEADER, SHEET_ID, SHEET_RANGE
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SERVICE_ACCOUNT_FILE = "key.json"
@@ -26,8 +25,8 @@ def write_on_sheets(list_to_write):
         spreadsheetId=SHEET_ID, range=SHEET_RANGE, body={}
     ).execute()
 
-    list_to_write.insert(0,SHEET_HEADER)
-    
+    list_to_write.insert(0, SHEET_HEADER)
+
     logger.info(f"Update Sheets..")
     service.spreadsheets().values().update(
         spreadsheetId=SHEET_ID,
