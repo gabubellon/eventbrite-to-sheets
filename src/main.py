@@ -11,7 +11,7 @@ def main():
     attendes_array = []
 
     key_array = load_keys()
-    for items in attends[:2]:
+    for items in attends[]:
         attendes_array.append(
             [
                 dict_nested_get(items, keys)
