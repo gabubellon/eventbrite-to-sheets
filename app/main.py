@@ -4,8 +4,8 @@ import toml
 from fastapi import FastAPI
 from loguru import logger
 
-from app.lib import eventbrite, google_sheets
-from app.lib.settings import API_HASH
+from lib import eventbrite, google_sheets
+from lib.settings import API_HASH
 
 app = FastAPI()
 
