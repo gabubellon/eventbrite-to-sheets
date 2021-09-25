@@ -6,4 +6,4 @@ python-decouple
 loguru
 toml
 fastapi
-uvicorn[standard]
+uvicorn
