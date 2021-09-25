@@ -9,7 +9,7 @@ COPY ./src ./src
 
 ENV PYTHONPATH "${PYTHONPATH}:/usr/src/eventbrite-to-sheets"
 
-CMD [ "uvicorn", "src.main:app", "--reload", "--workers=1", "--host=0.0.0.0", "--port=8080 " ]
+CMD [ "uvicorn", "src.main:app", "--reload", "--workers=1", "--host=0.0.0.0", "--port=80 " ]
 
   
 
