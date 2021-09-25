@@ -5,3 +5,5 @@ google-auth-oauthlib
 python-decouple
 loguru
 toml
+fastapi
+uvicorn[standard]
