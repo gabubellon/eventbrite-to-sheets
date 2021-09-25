@@ -1,9 +1,13 @@
+from typing import Optional
+
 import toml
+from fastapi import FastAPI
 from loguru import logger
 
-import eventbrite
-import google_sheets
+from .lib import eventbrite, google_sheets
+from .lib.settings import API_HASH
 
+app = FastAPI()
 
 def main():
     logger.info("Starting get attends from event")
@@ -31,6 +35,13 @@ def dict_nested_get(dic, keys):
         dic = dic.get(key)
     return dic
 
+@app.get("/{API_HASH}")
+def read_root():
+    return {"Hello": "World"}
+
+@app.get("/{API_HASH}/items/{item_id}")
+def search_attend(item_id: int, q: Optional[str] = None):
+    return {"item_id": item_id, "q": q}
 
 if __name__ == "__main__":
     main()
