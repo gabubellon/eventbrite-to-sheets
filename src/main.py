@@ -1,7 +1,8 @@
+import json
 from typing import Optional
 
 import toml
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from loguru import logger
 
 from src.libs import eventbrite, google_sheets
@@ -38,6 +39,14 @@ def dict_nested_get(dic, keys):
 @app.get("/{API_HASH}")
 def read_root():
     return {"Hello": "World"}
+
+@app.post("/eventbrite/{API_HASH}")
+async def post(request: Request):
+    req_info = await request.json()
+    return {
+        "status" : "SUCCESS",
+        "data" : req_info
+    }
 
 @app.get("/{API_HASH}/items/{item_id}")
 def search_attend(item_id: int, q: Optional[str] = None):
