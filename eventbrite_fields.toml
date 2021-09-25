@@ -1,7 +1,9 @@
 attends=[
         "order_id",
-        "profile:name",
-        "profile:email",
+        "profile___name",
+        "profile___email",
         "ticket_class_name",
-        "costs:base_price:major_value"
+        "costs___base_price___major_value"
 ]
+
+api_columns=["order_id","profile___email","profile___name"]

@@ -13,13 +13,13 @@ def get_event_attendees():
         + f"events/{EVENTBRITE_EVENT_ID}/attendees/?token={EVENTBRITE_TOKEN}"
     )
     response = requests.get(url)
+    
     continuation = json.loads(response.text).get("pagination").get("continuation")
     page_number = json.loads(response.text).get("pagination").get("page_number")
     page_count = json.loads(response.text).get("pagination").get("page_count")
     has_more_items = json.loads(response.text).get("pagination").get("has_more_items")
     attendees = json.loads(response.text).get("attendees")
     logger.info(f"Reading attendees page {page_number} of {page_count}...")
-
     while True:
         if has_more_items:
             response = requests.get(url + f"&continuation={continuation}")
@@ -36,3 +36,12 @@ def get_event_attendees():
             break
 
     return attendees
+
+
+def get_event_attendee(base_url):
+    url = f"{base_url}?token={EVENTBRITE_TOKEN}"
+    response = requests.get(url)
+    attendees = json.loads(response.text)
+
+    return [attendees]
+    
