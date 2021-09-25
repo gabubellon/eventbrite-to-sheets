@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from typing import Optional
 
 import toml
@@ -43,6 +44,9 @@ def read_root():
 @app.post("/eventbrite/{API_HASH}")
 async def post(request: Request):
     req_info = await request.json()
+    with open(f'./files/{datetime.now().strftime("%Y%m%d_%s")}_event.json',"w") as file:
+        file.write(json.dumps(req_info))
+
     return {
         "status" : "SUCCESS",
         "data" : req_info

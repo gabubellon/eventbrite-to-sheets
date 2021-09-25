@@ -4,6 +4,9 @@ services:
   eventbrite_api:
     container_name: eventbrite_apidocke
     build: .
+    restart: "always"
     ports:
       - "0.0.0.0:80:80"
-    env_file: .env   
+    env_file: .env 
+    volumes:
+      - ./files:/usr/src/eventbrite-to-sheets/files
